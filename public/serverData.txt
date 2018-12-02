@@ -1,0 +1,54 @@
+//0: {Id: 1, Name: "Jack", StartYear: 2013, EndYear: 2016, GPARecord: Array([3.4, 2.1, 1.2, 3.6])}
+//1: {Id: 2, Name: "Jill", StartYear: 2010, EndYear: 2013, GPARecord: Array[3.3, 2.3, 1.1, 3.7]}
+//2: {Id: 3, Name: "Bob", StartYear: 2010, EndYear: 2012, GPARecord: Array[2.3, 2.5, 2.8]}
+//3: {Id: 4, Name: "Alice", StartYear: 2013, EndYear: 2016, GPARecord: Array [3.6, 2.9, 3.4, 3.7]}
+//4: {Id: 5, Name: "Eve", StartYear: 2012, EndYear: 2015, GPARecord: Array[3.3, 2.5, 1.1, 3.7]}
+//5: {Id: 6, Name: "Malcom", StartYear: 2011, EndYear: 2014, GPARecord: Array[3.8, 2.7, 1.1, 3.7]}
+//6: {Id: 7, Name: "Don", StartYear: 2009, EndYear: 2012, GPARecord: Array[3.1, 2.1, 1.1, 3.7]}
+//7: {Id: 8, Name: "Mike", StartYear: 2009, EndYear: 2011, GPARecord: Array [3.6, 2.2, 1.1]}
+//8: {Id: 9, Name: "Stacy", StartYear: 2015, EndYear: 2016, GPARecord: Array[3.3, 2.3]}
+//9: {Id: 10, Name: "Safron", StartYear: 2016, EndYear: 2016, GPARecord: Array[3.3]
+//10: {Id: 11, Name: "Bill", StartYear: 2012, EndYear: 2015, GPARecord: Array [3.6, 2.4, 2.3, 3.7]}
+//11: {Id: 12, Name: "Quin", StartYear: 2008, EndYear: 2012, GPARecord: Array[3.3, 2.7, 1.1, 3.7, 2.4]}
+//12: {Id: 13, Name: "Erin", StartYear: 2008, EndYear: 2011, GPARecord: Array[3.8, 2.9, 1.1, 3.7]}
+//13: {Id: 14, Name: "Sharon", StartYear: 2013, EndYear: 2016, GPARecord: Array[3.6, 2.3, 1.1, 3.7]}
+//14: {Id: 15, Name: "Lilly", StartYear: 2011, EndYear: 2014, GPARecord: Array[1, 2.5, 1.1, 3.8]}
+//15: {Id: 16, Name: "Inara", StartYear: 2004, EndYear: 2007, GPARecord: [3.3, 2.8, 1.1, 3.7]}
+//16: {Id: 17, Name: "Harry", StartYear: 2005, EndYear: 2007, GPARecord: [2.4, 2.9, 1.1]}
+//17: {Id: 18, Name: "Emma", StartYear: 2007, EndYear: 2011, GPARecord: Array[3.8, 2.6, 1.6, 3.7, 2.8]}
+//18: {Id: 19, Name: "Sharon", StartYear: 2010, EndYear: 2013, GPARecord: Array[3.5, 2.8, 1.1, 3.7]}
+//19: {Id: 20, Name: "Uday", StartYear: 2002, EndYear: 2005, GPARecord: Array[3.8, 2.5, 1.8, 3.7]}
+//20: {Id: 21, Name: "Ross", StartYear: 2003, EndYear: 2006, GPARecord: Array[3.3, 2.7, 1.5, 3.7]}
+//21: {Id: 22, Name: "Michael", StartYear: 2001, EndYear: 2004, GPARecord: Array [3.7, 2.5, 1.4, 3.7]}
+//22: {Id: 23, Name: "Nick", StartYear: 2001, EndYear: 2004, GPARecord: Array[3.4, 2, 1, 3.7]}
+//23: {Id: 24, Name: "Laura", StartYear: 2010, EndYear: 2013, GPARecord: Array[1.5, 2.7, 3.2, 4]}
+//24: {Id: 25, Name: "Kevin", StartYear: 2000, EndYear: 2003, GPARecord: Array[3.3, 2.4, 1.6, 3.7]}
+
+
+Data should be:
+year:2000, students:[{name:kevin,gpa:3.3},
+avg:3.3
+year:2001, students:[{name:kevin,gpa:2.4},{name:Nick,gpa:3.4},{name:Michael,gpa:3.7}]
+avg:3.166666
+year:2002, students:[{name:kevin,gpa:1.6},{name:Nick,gpa:2.0},{name:Michael,gpa:2.5},{name:Uday,gpa:3.8}]
+avg=2.475
+year:2003, students:[{name:kevin,gpa:3.7},{name:Nick,gpa:1.0},{name:Michael,gpa:1.4},{name:Ross,gpa:3.3},{name:Uday,gpa:2.5}]
+avg=2.38
+year:2004, students:[{name:Nick,gpa:3.7},{name:Michael,gpa:3.7},{name:Ross,gpa:2.7},{name:Uday,gpa:1.8},{name:Inara,gpa:3.3}]
+avg=3.04
+
+year:2005, students:[{name:Ross,gpa:},{name:Uday,gpa: 3.7},{name:Harry,gpa:},{name:Inara,gpa:}]
+year:2006, students:[{name:Ross,gpa:},{name:Harry,gpa:},{name:Inara,gpa:}]
+year:2007, students:[{name:Emma,gpa:},{name:Harry,gpa:},{name:Inara,gpa:}]
+year:2008, students:[{name:Emma,gpa:},{name:Erin,gpa:},{name:Quin,gpa:}]
+year:2009, students:[{name:Emma,gpa:},{name:Erin,gpa:},{name:Quin,gpa:},{name:Mike,gpa:},{name:Don,gpa:}]
+year:2010, students:[{name:Laura,gpa:},{name:Sharon,gpa:},{name:Emma,gpa:},{name:Erin,gpa:},{name:Quin,gpa:},{name:Mike,gpa:},{name:Don,gpa:},{name:Bob,gpa:},{name:Jill,gpa:}]
+year:2011, students:[{name:Laura,gpa:},{name:Sharon,gpa:},{name:Emma,gpa:},{name:Lilly,gpa:},{name:Erin,gpa:},{name:Quin,gpa:},{name:Mike,gpa:},{name:Don,gpa:},{name:Malcom,gpa:},{name:Bob,gpa:},{name:Jill,gpa:}]
+year:2012, students:[{name:Laura,gpa:},{name:Sharon,gpa:},{name:Lilly,gpa:},{name:Quin,gpa:},{name:Bill,gpa:},{name:Don,gpa:},{name:Malcom,gpa:},{name:Eve,gpa:},{name:Bob,gpa:},{name:Jill,gpa:}]
+year:2013, students:[{name:Laura,gpa:},{name:Sharon,gpa:},{name:Lilly,gpa:},{name:Sharon,gpa:},{name:Bill,gpa:},{name:Malcom,gpa:},{name:Eve,gpa:},{name:Alice,gpa:},{name:Jill,gpa:},{name:Jack,gpa:}]
+year:2014, students:[{name:Lilly,gpa:},{name:Sharon,gpa:},{name:Bill,gpa:},{name:Malcom,gpa:},{name:Eve,gpa:},{name:Alice,gpa:},{name:Jack,gpa:}]
+year:2015, students:[{name:Sharon,gpa:},{name:Bill,gpa:},{name:Stacy,gpa:},{name:Eve,gpa:},{name:Alice,gpa:},{name:Jack,gpa:}]
+
+
+year:2016, students:[{name:Sharon,gpa:3.7},{name:Safron,gpa:3.3},{name:Stacy,gpa:2.3]},{name:Alice,gpa:3.7},{name:Jack,gpa:3.6}]
+3.32

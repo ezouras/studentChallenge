@@ -1,21 +1,23 @@
 $(document).ready(function(){
   let firstYear=2000;
   let lastYear=(new Date()).getFullYear();
-  let studentDataByYear={};
+  let studentDataByYear=[];
   var students;
 
 
-
+//[{year:2005, students:[{name:Ross,gpa:},{name:Uday,gpa: 3.7},{name:Harry,gpa:},{name:Inara,gpa:}]]
 //set up object
 for(let i=firstYear;i<=lastYear;i++){
-    studentDataByYear[i]={students:[],gpa:0}
+    studentDataByYear.push({year:i,students:[],gpa:0});
   }
+  console.log(studentDataByYear);
 
 //get data
   $.getJSON("http://apitest.sertifi.net/api/Students",function(){
   })
   .done(function(data){
-    setStudentDataByYear(data);
+    setStudents(data);
+    setGPA();
     displayData();
     addListeners();
   })
@@ -25,76 +27,83 @@ for(let i=firstYear;i<=lastYear;i++){
 
 
 
+
   ///***  Functions *** ///
 
-  function setStudentDataByYear(students){
+  function setStudents(students){
     students.forEach((value,index)=>{
       let counter=0;
       for(let i=value.StartYear;i<=value.EndYear;i++){
-        let objForYear=studentDataByYear[i];
+        let yearString=i.toString();//2001
+        let arrNumb;
+        if(yearString.slice(2,3)==0)
+        {
+          arrNumb=parseInt(yearString.slice(3,4));
+        }
+        else{
+          arrNumb=parseInt(yearString.slice(2,4));
+        }
+        let objForYear=studentDataByYear[arrNumb];
         let studentObj={};
         studentObj["name"]=value.Name;
         studentObj["gpa"]=value.GPARecord[counter];
         objForYear.students.push(studentObj);
-        if(objForYear.students.length===1)
-        {
-          objForYear.gpa=value.GPARecord[counter];
-        }
-        else{
-        let averageGPAForYear=(objForYear.gpa+value.GPARecord[counter])/2;
-        console.log(`the average gpa for the year is ${averageGPAForYear}`)
-        objForYear.gpa=averageGPAForYear;
-        }
         counter++;
       }
     });
+    //console.log(studentDataByYear);
   }
-  //Math.round(num * 100) / 100
 
-function displayData(){
-  for(var key in studentDataByYear)
-  {
-    studentGPARounded=round(2,studentDataByYear[key].gpa);
-    let htmlSnippet=`<div class="row data">
-                      <div class="col-sm clickYear">${key}</div>
-                      <div class="col-sm">${studentGPARounded}</div>`;
-
-    $( "#pageTable" ).append(htmlSnippet);
-
-  }
-}
-
-function addListeners(){
-  $(".clickYear").each(function(){
-    this.addEventListener("click", function(e) {
-        let targetYear=e.target.outerText;
-        url = 'studentsByYear.html?' +targetYear+ $.param( studentDataByYear[targetYear]);
-        document.location.href = url;
-      });
-    })
-}
-
-function calculateAverage(number,divider){
-
-}
-
-/* return rounded number */
-function round(decimalPlaces,numberToRound){
-    let number=1;
-    let gpaString;
-    for(let i=0;i<decimalPlaces;i++){
-      number=number*10;
+    function setGPA(){
+      studentDataByYear.forEach((value,index)=>{
+        let length=value.students.length;
+        let total=value.students.reduce((acc,nV)=>{
+          acc=acc+nV.gpa;
+          return acc+value.gpa;
+        },0);
+        let averageGPA=total/length;
+        value.gpa= round(2,averageGPA);
+      })
     }
 
-    gpaRound=Math.round(numberToRound * 100) / 100;
-    gpaString=parseFloat(gpaRound).toString();
-    if(gpaString=="0")
-      gpaString="No data for this year"
-    else if(gpaString.length<4)
-      gpaString=gpaString+"0";
+  function displayData(){
+    studentDataByYear.forEach((value,index)=>{
+      let htmlSnippet=`<div class="row data">
+                        <div class="col-sm clickYear">${value.year}</div>
+                        <div class="col-sm">${value.gpa}</div>`;
 
-  return gpaString;
-}
+      $( "#pageTable" ).append(htmlSnippet);
+    })
+  }
 
+  function addListeners(){
+    $(".clickYear").each(function(){
+      this.addEventListener("click", function(e) {
+          let targetYear=e.target.outerText;
+          let obj = studentDataByYear.find(obj => obj.year == targetYear);
+          console.log(obj);
+          url = 'studentsByYear.html?' + $.param(obj);
+          document.location.href = url;
+        });
+      })
+  }
+
+
+  /* return rounded number */
+  function round(decimalPlaces,numberToRound){
+      let number=1;
+      let gpaString;
+      for(let i=0;i<decimalPlaces;i++){
+        number=number*10;
+      }
+      gpaRound=Math.round(numberToRound * 100) / 100;
+      gpaString=parseFloat(gpaRound).toString();
+      if(isNaN(gpaString))
+        gpaString="No data for this year"
+      else if(gpaString.length<4)
+        gpaString=gpaString+"0";
+
+    return gpaString;
+  }
 
 });
