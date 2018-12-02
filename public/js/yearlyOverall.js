@@ -10,7 +10,6 @@ $(document).ready(function(){
 for(let i=firstYear;i<=lastYear;i++){
     studentDataByYear.push({year:i,students:[],gpa:0});
   }
-  console.log(studentDataByYear);
 
 //get data
   $.getJSON("http://apitest.sertifi.net/api/Students",function(){
@@ -81,7 +80,6 @@ for(let i=firstYear;i<=lastYear;i++){
       this.addEventListener("click", function(e) {
           let targetYear=e.target.outerText;
           let obj = studentDataByYear.find(obj => obj.year == targetYear);
-          console.log(obj);
           url = 'studentsByYear.html?' + $.param(obj);
           document.location.href = url;
         });
