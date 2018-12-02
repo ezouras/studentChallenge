@@ -69,7 +69,8 @@ for(let i=firstYear;i<=lastYear;i++){
     studentDataByYear.forEach((value,index)=>{
       let htmlSnippet=`<div class="row data">
                         <div class="col-sm clickYear">${value.year}</div>
-                        <div class="col-sm">${value.gpa}</div>`;
+                        <div class="col-sm  text-center">${value.students.length}</div>
+                        <div class="col-sm  text-center">${value.gpa}</div>`;
 
       $( "#pageTable" ).append(htmlSnippet);
     })

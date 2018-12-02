@@ -10,7 +10,7 @@ $(document).ready(function(){
       for(let i=0;i<students.length;i++){
         let student=students[i];
         let htmlSnippet=`<div class="row">
-                          <div class="col-4 text-center">${student.name}</div>
+                          <div class="col-4">${student.name}</div>
                           <div class="col-4 text-center">${student.gpa}</div>
                         </div>`;
         $( "#pageTable" ).append(htmlSnippet);
